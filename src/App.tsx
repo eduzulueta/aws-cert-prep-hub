@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { certifications, Certification, Exam } from './data';
 import { 
@@ -13,7 +13,12 @@ import {
   ArrowRight,
   RefreshCcw,
   XCircle,
-  Brain
+  Brain,
+  ExternalLink,
+  FileText,
+  Radio,
+  Rss,
+  MessageSquare
 } from 'lucide-react';
 
 type ViewState = 
@@ -22,7 +27,8 @@ type ViewState =
   | { type: 'prep'; certId: string }
   | { type: 'quiz'; certId: string; examId: string }
   | { type: 'progress'; certId: string }
-  | { type: 'solutions'; certId: string };
+  | { type: 'solutions'; certId: string }
+  | { type: 'resources'; certId: string };
 
 export default function App() {
   const [viewState, setViewState] = useState<ViewState>({ type: 'home' });
@@ -39,6 +45,8 @@ export default function App() {
         return <QuizView certId={viewState.certId} examId={viewState.examId} onNavigate={setViewState} />;
       case 'solutions':
         return <SolutionsView certId={viewState.certId} onNavigate={setViewState} />;
+      case 'resources':
+        return <ResourcesView certId={viewState.certId} onNavigate={setViewState} />;
       case 'progress':
         return <ProgressView certId={viewState.certId} onNavigate={setViewState} />;
     }
@@ -155,11 +163,7 @@ function DashboardView({ certId, onNavigate }: { certId: string; onNavigate: (vi
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1">
         <div 
-          onClick={() => {
-            if (cert.guideUrl) {
-              window.open(cert.guideUrl, '_blank');
-            }
-          }}
+          onClick={() => onNavigate({ type: 'resources', certId })}
           className="group relative flex flex-col p-8 rounded-2xl bg-[#16161A] border border-white/5 hover:border-amber-500/40 transition-all cursor-pointer overflow-hidden"
         >
           <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
@@ -168,10 +172,10 @@ function DashboardView({ certId, onNavigate }: { certId: string; onNavigate: (vi
           <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6">
             <BookOpen className="w-6 h-6 text-amber-500" />
           </div>
-          <h4 className="text-xl font-bold text-white mb-2">Exam Guide</h4>
-          <p className="text-sm text-slate-400 mb-6">Official curriculum overview, domain weightings, and key concepts.</p>
+          <h4 className="text-xl font-bold text-white mb-2">Resources & Guidance</h4>
+          <p className="text-sm text-slate-400 mb-6">Official guides, well-architected framework, and the latest AWS announcements to prepare.</p>
           <button className="mt-auto flex items-center gap-2 text-xs font-bold text-amber-500 uppercase tracking-widest">
-            View Details <ChevronRight className="w-4 h-4" />
+            View Resources <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
@@ -208,6 +212,162 @@ function DashboardView({ certId, onNavigate }: { certId: string; onNavigate: (vi
             View Solutions <ChevronRight className="w-4 h-4" />
           </button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// -----------------------------------------------------------------------------
+// Component: ResourcesView
+// -----------------------------------------------------------------------------
+function ResourcesView({ certId, onNavigate }: { certId: string; onNavigate: (view: ViewState) => void }) {
+  const cert = certifications.find(c => c.id === certId);
+  if (!cert) return null;
+
+  return (
+    <div className="h-full bg-[#111114] rounded-3xl border border-white/5 p-6 md:p-10 flex flex-col overflow-y-auto">
+      <div className="shrink-0 mb-8">
+        <button 
+          onClick={() => onNavigate({ type: 'dashboard', certId })}
+          className="flex items-center text-xs font-bold text-amber-500 uppercase tracking-widest hover:text-amber-400 transition-colors mb-6"
+        >
+          <ArrowLeft className="w-4 h-4 mr-1" />
+          Back to Dashboard
+        </button>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-2">Resources & Guidance</h2>
+        <p className="text-sm text-slate-400">Essential links and latest updates for {cert.code}.</p>
+        <div className="h-1 w-20 bg-amber-500 rounded font-mono mt-4"></div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10">
+        
+        {/* Core Documents */}
+        <div className="space-y-6">
+          <div className="bg-[#16161A] p-6 rounded-2xl border border-white/5 flex flex-col h-full">
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-amber-500" />
+              Core Study Materials
+            </h3>
+            
+            <div className="space-y-4 flex-1">
+              <a 
+                href={cert.guideUrl || "https://aws.amazon.com/certification/"} 
+                target="_blank" rel="noreferrer" 
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors border border-white/5 group"
+              >
+                <div className="p-2 bg-amber-500/10 rounded-lg shrink-0">
+                  <FileText className="w-5 h-5 text-amber-500" />
+                </div>
+                <div>
+                  <h4 className="text-slate-200 font-bold mb-1 flex items-center gap-2">
+                    Official Exam Guide
+                    <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-amber-500 transition-colors" />
+                  </h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">The authoritative guide on exam domains, weighting, and syllabus.</p>
+                </div>
+              </a>
+
+              <a 
+                href="https://aws.amazon.com/architecture/well-architected/" 
+                target="_blank" rel="noreferrer" 
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors border border-white/5 group"
+              >
+                <div className="p-2 bg-amber-500/10 rounded-lg shrink-0">
+                  <Radio className="w-5 h-5 text-amber-500" />
+                </div>
+                <div>
+                  <h4 className="text-slate-200 font-bold mb-1 flex items-center gap-2">
+                    AWS Well-Architected Framework
+                    <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-amber-500 transition-colors" />
+                  </h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">Learn the architectural best practices for designing and operating reliable, secure, efficient, and cost-effective systems in the cloud.</p>
+                </div>
+              </a>
+
+              <a 
+                href="https://docs.aws.amazon.com/" 
+                target="_blank" rel="noreferrer" 
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors border border-white/5 group"
+              >
+                <div className="p-2 bg-amber-500/10 rounded-lg shrink-0">
+                  <BookOpen className="w-5 h-5 text-amber-500" />
+                </div>
+                <div>
+                  <h4 className="text-slate-200 font-bold mb-1 flex items-center gap-2">
+                    AWS Documentation
+                    <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-amber-500 transition-colors" />
+                  </h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">Explore comprehensive documentation and find specific answers about AWS services.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Latest Updates */}
+        <div className="space-y-6">
+          <div className="bg-[#16161A] p-6 rounded-2xl border border-white/5 flex flex-col">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                <Rss className="w-5 h-5 text-blue-400" />
+                Latest Announcements
+              </h3>
+            </div>
+            
+            <div className="space-y-4">
+              {[
+                { date: "APR 28", title: "AWS Glue 5.1 is now available in all AWS Commercial and AWS GovCloud (US) Regions", link: "https://aws.amazon.com/about-aws/whats-new/2024/04/aws-glue-5-1-aws-commercial-govcloud-us-regions/" },
+                { date: "APR 28", title: "AWS Cost Optimization Hub now supports CSV download", link: "https://aws.amazon.com/about-aws/whats-new/" },
+                { date: "APR 28", title: "Amazon WorkSpaces Personal enhances PCoIP to DCV protocol migration", link: "https://aws.amazon.com/about-aws/whats-new/" },
+                { date: "APR 28", title: "Amazon EC2 C8gn instances are now available in additional regions", link: "https://aws.amazon.com/about-aws/whats-new/" }
+              ].map((item, i) => (
+                <a key={i} href={item.link} target="_blank" rel="noreferrer" className="flex items-start gap-4 hover:bg-white/5 p-2 -mx-2 rounded-lg transition-colors group">
+                  <div className="text-center shrink-0 w-12">
+                    <div className="text-[10px] font-bold text-slate-500 uppercase">{item.date.split(' ')[0]}</div>
+                    <div className="text-lg font-bold text-slate-200">{item.date.split(' ')[1]}</div>
+                  </div>
+                  <h4 className="text-sm font-bold text-blue-400 group-hover:text-blue-300 leading-snug">
+                    {item.title} <ExternalLink className="w-3 h-3 inline ml-1 opacity-50" />
+                  </h4>
+                </a>
+              ))}
+            </div>
+            <a href="https://aws.amazon.com/new/" target="_blank" rel="noreferrer" className="block text-center mt-6 text-sm font-bold text-blue-400 hover:text-blue-300 border-t border-white/10 pt-4">
+              View all announcements <ExternalLink className="w-3 h-3 inline mb-0.5" />
+            </a>
+          </div>
+
+          <div className="bg-[#16161A] p-6 rounded-2xl border border-white/5 flex flex-col">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                <MessageSquare className="w-5 h-5 text-emerald-400" />
+                Recent AWS Blog posts
+              </h3>
+            </div>
+            
+            <div className="space-y-4">
+              {[
+                { date: "APR 29", title: "Scaling biomedical research on AWS: A cloud-native approach to scientific data management", link: "https://aws.amazon.com/blogs/" },
+                { date: "APR 28", title: "What the March Threat Technique Catalog update means for your AWS environment", link: "https://aws.amazon.com/blogs/" },
+                { date: "APR 28", title: "Access control with IAM Identity Center session tags", link: "https://aws.amazon.com/blogs/" }
+              ].map((item, i) => (
+                <a key={i} href={item.link} target="_blank" rel="noreferrer" className="flex items-start gap-4 hover:bg-white/5 p-2 -mx-2 rounded-lg transition-colors group">
+                   <div className="text-center shrink-0 w-12">
+                    <div className="text-[10px] font-bold text-slate-500 uppercase">{item.date.split(' ')[0]}</div>
+                    <div className="text-lg font-bold text-slate-200">{item.date.split(' ')[1]}</div>
+                  </div>
+                  <h4 className="text-sm font-bold text-emerald-400 group-hover:text-emerald-300 leading-snug">
+                    {item.title} <ExternalLink className="w-3 h-3 inline ml-1 opacity-50" />
+                  </h4>
+                </a>
+              ))}
+            </div>
+            <a href="https://aws.amazon.com/blogs/" target="_blank" rel="noreferrer" className="block text-center mt-6 text-sm font-bold text-emerald-400 hover:text-emerald-300 border-t border-white/10 pt-4">
+              View all blog posts <ExternalLink className="w-3 h-3 inline mb-0.5" />
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   );
@@ -395,19 +555,20 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
     return selectedOptions[0] === currentQuestion.correctAnswerIndex;
   };
 
-  const checkAnswer = (isShowOnly = false) => {
-    if (!isShowOnly && selectedOptions.length === 0) return;
-    setRevealed(prev => ({ ...prev, [currentIndex]: true }));
-  };
+  const attemptIdRef = useRef(Date.now().toString());
 
-  const finishQuiz = () => {
+  const saveProgress = (currentAnswers: Record<number, number[]>, currentRevealed: Record<number, boolean>, finalFinished = false) => {
     let finalScore = 0;
     const finalDomains: Record<string, { correct: number, total: number }> = {};
-    
+    let correctCount = 0;
+    let incorrectCount = 0;
+    let answeredCount = 0;
+
     exam.questions.forEach((q, idx) => {
-      if (revealed[idx]) {
-        const sel = answers[idx] || [];
+      if (currentRevealed[idx]) {
+        const sel = currentAnswers[idx] || [];
         if (sel.length > 0) {
+          answeredCount++;
           const multi = q.correctAnswerIndices !== undefined;
           let correct = false;
           if (multi && q.correctAnswerIndices) {
@@ -415,7 +576,12 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
           } else {
             correct = sel[0] === q.correctAnswerIndex;
           }
-          if (correct) finalScore++;
+          if (correct) {
+            finalScore++;
+            correctCount++;
+          } else {
+            incorrectCount++;
+          }
 
           const ds = finalDomains[q.domain] || { correct: 0, total: 0 };
           finalDomains[q.domain] = {
@@ -426,24 +592,51 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
       }
     });
 
-    setScore(finalScore);
-    setDomainScores(finalDomains);
-    setIsFinished(true);
-
     try {
       const saved = localStorage.getItem(`attempts-${certId}`);
       const attempts = saved ? JSON.parse(saved) : [];
-      attempts.push({
+      const attemptIdx = attempts.findIndex((a: any) => a.id === attemptIdRef.current);
+      
+      const newAttempt = {
+        id: attemptIdRef.current,
         examId,
         date: new Date().toISOString(),
         score: finalScore,
         totalQuestions: exam.questions.length,
-        domainScores: finalDomains
-      });
+        domainScores: finalDomains,
+        correctCount,
+        incorrectCount,
+        answeredCount,
+        isFinished: finalFinished
+      };
+
+      if (attemptIdx >= 0) {
+        attempts[attemptIdx] = newAttempt;
+      } else {
+        attempts.push(newAttempt);
+      }
       localStorage.setItem(`attempts-${certId}`, JSON.stringify(attempts));
     } catch (e) {
       console.error("Failed to save attempt", e);
     }
+
+    return { finalScore, finalDomains };
+  };
+
+  const checkAnswer = (isShowOnly = false) => {
+    if (!isShowOnly && selectedOptions.length === 0) return;
+    setRevealed(prev => {
+      const next = { ...prev, [currentIndex]: true };
+      setTimeout(() => saveProgress(answers, next, false), 0);
+      return next;
+    });
+  };
+
+  const finishQuiz = () => {
+    const { finalScore, finalDomains } = saveProgress(answers, revealed, true);
+    setScore(finalScore);
+    setDomainScores(finalDomains);
+    setIsFinished(true);
   };
 
   const nextQuestion = () => {
@@ -461,6 +654,7 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
   };
 
   const resetQuiz = () => {
+    attemptIdRef.current = Date.now().toString();
     setCurrentIndex(0);
     setAnswers({});
     setRevealed({});
@@ -763,7 +957,12 @@ function ProgressView({ certId, onNavigate }: { certId: string; onNavigate: (vie
       ) : (
         <div className="space-y-6 mt-8">
           {attempts.slice().reverse().map((attempt: any, i: number) => {
-            const percentage = Math.round((attempt.score / attempt.totalQuestions) * 100);
+            const isFinished = attempt.isFinished ?? true;
+            const correct = attempt.correctCount ?? attempt.score;
+            const answered = attempt.answeredCount ?? attempt.totalQuestions;
+            const incorrect = attempt.incorrectCount ?? (answered - correct);
+            const total = attempt.totalQuestions;
+            const percentage = isFinished ? Math.round((correct / total) * 100) : Math.round((correct / (answered || 1)) * 100);
             const passed = percentage >= 70;
             const date = new Date(attempt.date).toLocaleString(undefined, {
               dateStyle: 'medium',
@@ -776,24 +975,47 @@ function ProgressView({ certId, onNavigate }: { certId: string; onNavigate: (vie
                   <div>
                     <h3 className="text-xl font-bold text-white flex items-center gap-3">
                       Attempt {attempts.length - i}
-                      <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${passed ? 'bg-amber-500/10 text-amber-500 border border-amber-500/30' : 'bg-red-500/10 text-red-500 border border-red-500/30'}`}>
-                        {passed ? 'Passed' : 'Failed'}
-                      </span>
+                      {isFinished ? (
+                        <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${passed ? 'bg-amber-500/10 text-amber-500 border border-amber-500/30' : 'bg-red-500/10 text-red-500 border border-red-500/30'}`}>
+                          {passed ? 'Passed' : 'Failed'}
+                        </span>
+                      ) : (
+                        <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/30">
+                          Incomplete
+                        </span>
+                      )}
                     </h3>
                     <p className="text-xs text-slate-500 mt-1">{date}</p>
                   </div>
                   <div className="text-left md:text-right">
-                    <p className={`text-3xl font-extrabold ${passed ? 'text-amber-500' : 'text-red-500'}`}>{percentage}%</p>
-                    <p className="text-xs text-slate-400 mt-1">{attempt.score} out of {attempt.totalQuestions} correct</p>
+                    <p className={`text-3xl font-extrabold ${isFinished ? (passed ? 'text-amber-500' : 'text-red-500') : 'text-blue-400'}`}>
+                      {percentage}% {(!isFinished && answered > 0) && <span className="text-sm font-normal text-slate-500">(Current)</span>}
+                    </p>
+                    <p className="text-xs text-slate-400 mt-1">{correct} out of {isFinished ? total : answered} correct</p>
                   </div>
                 </div>
 
-                {attempt.domainScores && (
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  <div className="bg-[#111114] border border-white/5 p-4 rounded-xl text-center">
+                    <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-1">Answered</p>
+                    <p className="text-xl font-mono text-white">{answered} <span className="text-xs text-slate-500">/ {total}</span></p>
+                  </div>
+                  <div className="bg-[#111114] border border-emerald-500/10 p-4 rounded-xl text-center">
+                    <p className="text-[10px] text-emerald-500/70 uppercase tracking-widest font-bold mb-1">Correct</p>
+                    <p className="text-xl font-mono text-emerald-400">{correct}</p>
+                  </div>
+                  <div className="bg-[#111114] border border-red-500/10 p-4 rounded-xl text-center">
+                    <p className="text-[10px] text-red-500/70 uppercase tracking-widest font-bold mb-1">Incorrect</p>
+                    <p className="text-xl font-mono text-red-400">{incorrect}</p>
+                  </div>
+                </div>
+
+                {attempt.domainScores && Object.keys(attempt.domainScores).length > 0 && (
                   <div>
                     <h4 className="text-sm font-bold text-white mb-4">Domain Performance</h4>
                     <div className="space-y-4">
                       {Object.entries(attempt.domainScores).map(([domain, stats]: [string, any]) => {
-                        const score = Math.round((stats.correct / stats.total) * 100);
+                        const score = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
                         return (
                           <div key={domain}>
                             <div className="flex justify-between items-end mb-1">
