@@ -22,14 +22,22 @@ export function SlidesViewAppWrapper({ certId, onNavigate }: { certId: string; o
         </div>
       </div>
 
-      <div className="flex-1 bg-white/5 relative p-4 flex flex-col">
-          <div className="flex-1 rounded-xl overflow-hidden bg-black/20 border border-white/10 shadow-2xl relative">
-            <iframe 
-              src="/storage.pdf" 
-              className="w-full h-full border-0 absolute inset-0" 
-              title="AWS Storage Section PDF"
-            />
-          </div>
+      <div className="flex-1 bg-white/5 relative p-4 flex flex-col items-center justify-center">
+        <div className="bg-[#16161A] border border-white/10 rounded-2xl p-8 max-w-md w-full text-center shadow-2xl">
+          <MonitorPlay className="w-16 h-16 text-amber-500 mx-auto mb-6 opacity-80" />
+          <h3 className="text-xl font-bold text-white mb-2">Original Course Slides</h3>
+          <p className="text-slate-400 mb-8 text-sm leading-relaxed">
+            The browser's built-in PDF viewer may be blocked inside the editor's preview panel due to security sandboxing.
+          </p>
+          <a 
+            href="/storage.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 w-full bg-amber-500 text-black px-6 py-3 rounded-xl font-bold hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/20"
+          >
+            Open PDF in New Tab
+          </a>
+        </div>
       </div>
     </div>
   );
