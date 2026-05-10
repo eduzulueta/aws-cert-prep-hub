@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { certifications, Certification, Exam } from './data';
+import { courseSlides } from './slides';
 import { 
   BookOpen, 
   GraduationCap, 
@@ -18,17 +19,20 @@ import {
   FileText,
   Radio,
   Rss,
-  MessageSquare
+  MessageSquare,
+  HardDrive, Database, ArrowRightLeft, Cpu, Box, LineChart, Layers, Shield, Globe, Sliders, Terminal, MoreHorizontal, MonitorPlay, Trash2
 } from 'lucide-react';
+import { SlidesViewAppWrapper } from './SlidesView';
 
 type ViewState = 
   | { type: 'home' }
   | { type: 'dashboard'; certId: string }
   | { type: 'prep'; certId: string }
-  | { type: 'quiz'; certId: string; examId: string }
+  | { type: 'quiz'; certId: string; examId: string; resumeAttemptId?: string }
   | { type: 'progress'; certId: string }
   | { type: 'solutions'; certId: string }
-  | { type: 'resources'; certId: string };
+  | { type: 'resources'; certId: string }
+  | { type: 'slides'; certId: string };
 
 export default function App() {
   const [viewState, setViewState] = useState<ViewState>({ type: 'home' });
@@ -42,11 +46,13 @@ export default function App() {
       case 'prep':
         return <PrepView certId={viewState.certId} onNavigate={setViewState} />;
       case 'quiz':
-        return <QuizView certId={viewState.certId} examId={viewState.examId} onNavigate={setViewState} />;
+        return <QuizView certId={viewState.certId} examId={viewState.examId} resumeAttemptId={viewState.resumeAttemptId} onNavigate={setViewState} />;
       case 'solutions':
         return <SolutionsView certId={viewState.certId} onNavigate={setViewState} />;
       case 'resources':
         return <ResourcesView certId={viewState.certId} onNavigate={setViewState} />;
+      case 'slides':
+        return <SlidesViewAppWrapper certId={viewState.certId} onNavigate={setViewState} />;
       case 'progress':
         return <ProgressView certId={viewState.certId} onNavigate={setViewState} />;
     }
@@ -77,7 +83,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="flex-1 w-full max-w-6xl mx-auto p-4 sm:p-8">
+      <main className="flex-1 flex flex-col w-full max-w-6xl mx-auto p-4 sm:p-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={viewState.type}
@@ -85,7 +91,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="w-full h-full"
+            className="w-full flex-1 flex flex-col"
           >
             {renderView()}
           </motion.div>
@@ -239,6 +245,27 @@ function ResourcesView({ certId, onNavigate }: { certId: string; onNavigate: (vi
         <div className="h-1 w-20 bg-amber-500 rounded font-mono mt-4"></div>
       </div>
 
+      <div className="mb-8">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-xl font-bold text-white flex items-center gap-2">
+            <MonitorPlay className="w-5 h-5 text-amber-500" />
+            Course Slides
+          </h3>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <button 
+              onClick={() => onNavigate({ type: 'slides', certId })}
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#16161A] border border-white/5 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all text-center group"
+            >
+              <div className="w-12 h-12 rounded-full bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-4 transition-colors">
+                <Database className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
+              </div>
+              <h4 className="text-sm font-bold text-slate-200 group-hover:text-white transition-colors tracking-wide">Storage Section</h4>
+              <p className="text-[10px] uppercase font-bold text-emerald-500 tracking-widest mt-2 border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 rounded">View Full Slides</p>
+            </button>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10">
         
         {/* Core Documents */}
@@ -372,6 +399,10 @@ function ResourcesView({ certId, onNavigate }: { certId: string; onNavigate: (vi
     </div>
   );
 }
+
+// -----------------------------------------------------------------------------
+// Removed wrapper since imported directly
+// -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
 // Component: PrepView
@@ -512,13 +543,24 @@ function SolutionsView({ certId, onNavigate }: { certId: string; onNavigate: (vi
 // -----------------------------------------------------------------------------
 // Component: QuizView
 // -----------------------------------------------------------------------------
-function QuizView({ certId, examId, onNavigate }: { certId: string; examId: string; onNavigate: (view: ViewState) => void }) {
+function QuizView({ certId, examId, resumeAttemptId, onNavigate }: { certId: string; examId: string; resumeAttemptId?: string; onNavigate: (view: ViewState) => void }) {
   const cert = certifications.find(c => c.id === certId);
   const exam = cert?.exams.find(e => e.id === examId);
   
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, number[]>>({});
-  const [revealed, setRevealed] = useState<Record<number, boolean>>({});
+  const attemptSavedData = (() => {
+    if (resumeAttemptId) {
+       try {
+         const saved = localStorage.getItem(`attempts-${certId}`);
+         const attempts = saved ? JSON.parse(saved) : [];
+         return attempts.find((a: any) => a.id === resumeAttemptId) || null;
+       } catch (e) {}
+    }
+    return null;
+  })();
+
+  const [currentIndex, setCurrentIndex] = useState(() => attemptSavedData?.savedCurrentIndex || 0);
+  const [answers, setAnswers] = useState<Record<number, number[]>>(() => attemptSavedData?.savedAnswers || {});
+  const [revealed, setRevealed] = useState<Record<number, boolean>>(() => attemptSavedData?.savedRevealed || {});
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [domainScores, setDomainScores] = useState<Record<string, { correct: number; total: number }>>({});
@@ -537,13 +579,19 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
     if (isMultiSelect) {
       setAnswers(prev => {
         const current = prev[currentIndex] || [];
-        return {
+        const next = {
           ...prev,
           [currentIndex]: current.includes(idx) ? current.filter(i => i !== idx) : [...current, idx]
         };
+        setTimeout(() => saveProgress(next, revealed, currentIndex, false), 0);
+        return next;
       });
     } else {
-      setAnswers(prev => ({ ...prev, [currentIndex]: [idx] }));
+      setAnswers(prev => {
+        const next = { ...prev, [currentIndex]: [idx] };
+        setTimeout(() => saveProgress(next, revealed, currentIndex, false), 0);
+        return next;
+      });
     }
   };
 
@@ -555,9 +603,9 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
     return selectedOptions[0] === currentQuestion.correctAnswerIndex;
   };
 
-  const attemptIdRef = useRef(Date.now().toString());
+  const attemptIdRef = useRef(resumeAttemptId || Date.now().toString());
 
-  const saveProgress = (currentAnswers: Record<number, number[]>, currentRevealed: Record<number, boolean>, finalFinished = false) => {
+  const saveProgress = (currentAnswers: Record<number, number[]>, currentRevealed: Record<number, boolean>, cIndex: number, finalFinished = false) => {
     let finalScore = 0;
     const finalDomains: Record<string, { correct: number, total: number }> = {};
     let correctCount = 0;
@@ -565,10 +613,12 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
     let answeredCount = 0;
 
     exam.questions.forEach((q, idx) => {
-      if (currentRevealed[idx]) {
-        const sel = currentAnswers[idx] || [];
-        if (sel.length > 0) {
-          answeredCount++;
+      const sel = currentAnswers[idx] || [];
+      if (sel.length > 0) {
+        answeredCount++; // Always count as answered if there is a selection
+        
+        // We only score it if it's explicitly revealed during the quiz, OR if the quiz is finished
+        if (currentRevealed[idx] || finalFinished) {
           const multi = q.correctAnswerIndices !== undefined;
           let correct = false;
           if (multi && q.correctAnswerIndices) {
@@ -607,7 +657,10 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
         correctCount,
         incorrectCount,
         answeredCount,
-        isFinished: finalFinished
+        isFinished: finalFinished,
+        savedAnswers: currentAnswers,
+        savedRevealed: currentRevealed,
+        savedCurrentIndex: cIndex
       };
 
       if (attemptIdx >= 0) {
@@ -627,13 +680,13 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
     if (!isShowOnly && selectedOptions.length === 0) return;
     setRevealed(prev => {
       const next = { ...prev, [currentIndex]: true };
-      setTimeout(() => saveProgress(answers, next, false), 0);
+      setTimeout(() => saveProgress(answers, next, currentIndex, false), 0);
       return next;
     });
   };
 
   const finishQuiz = () => {
-    const { finalScore, finalDomains } = saveProgress(answers, revealed, true);
+    const { finalScore, finalDomains } = saveProgress(answers, revealed, currentIndex, true);
     setScore(finalScore);
     setDomainScores(finalDomains);
     setIsFinished(true);
@@ -641,7 +694,11 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
 
   const nextQuestion = () => {
     if (currentIndex < exam.questions.length - 1) {
-      setCurrentIndex(i => i + 1);
+      setCurrentIndex(i => {
+        const nextIdx = i + 1;
+        setTimeout(() => saveProgress(answers, revealed, nextIdx, false), 0);
+        return nextIdx;
+      });
     } else {
       finishQuiz();
     }
@@ -649,7 +706,11 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
 
   const prevQuestion = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(i => i - 1);
+      setCurrentIndex(i => {
+        const prevIdx = i - 1;
+        setTimeout(() => saveProgress(answers, revealed, prevIdx, false), 0);
+        return prevIdx;
+      });
     }
   };
 
@@ -661,6 +722,7 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
     setScore(0);
     setIsFinished(false);
     setDomainScores({});
+    setTimeout(() => saveProgress({}, {}, 0, false), 0);
   };
 
   if (isFinished) {
@@ -819,7 +881,7 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
                       <strong className="text-red-400 font-bold flex items-center gap-2 mb-2">
                         <XCircle className="w-4 h-4" /> Why are the other options wrong?
                       </strong>
-                      <p className="text-slate-300 leading-relaxed font-mono text-[13px]">
+                      <p className="text-slate-300 leading-relaxed font-mono text-[13px] whitespace-pre-wrap">
                         {(currentQuestion as any).whyIncorrect}
                       </p>
                     </div>
@@ -916,17 +978,22 @@ function QuizView({ certId, examId, onNavigate }: { certId: string; examId: stri
 // -----------------------------------------------------------------------------
 function ProgressView({ certId, onNavigate }: { certId: string; onNavigate: (view: ViewState) => void }) {
   const cert = certifications.find(c => c.id === certId);
-  if (!cert) return null;
-
-  const getAttempts = () => {
+  
+  const [attempts, setAttempts] = useState(() => {
     try {
       const saved = localStorage.getItem(`attempts-${certId}`);
       if (saved) return JSON.parse(saved);
     } catch(e) {}
     return [];
+  });
+
+  const removeAttempt = (attemptId: string) => {
+    const updatedAttempts = attempts.filter((a: any) => a.id !== attemptId);
+    localStorage.setItem(`attempts-${certId}`, JSON.stringify(updatedAttempts));
+    setAttempts(updatedAttempts);
   };
 
-  const attempts = getAttempts();
+  if (!cert) return null;
 
   return (
     <div className="h-full bg-[#111114] rounded-3xl border border-white/5 p-6 md:p-10 max-w-4xl mx-auto space-y-6 overflow-y-auto">
@@ -987,11 +1054,28 @@ function ProgressView({ certId, onNavigate }: { certId: string; onNavigate: (vie
                     </h3>
                     <p className="text-xs text-slate-500 mt-1">{date}</p>
                   </div>
-                  <div className="text-left md:text-right">
-                    <p className={`text-3xl font-extrabold ${isFinished ? (passed ? 'text-amber-500' : 'text-red-500') : 'text-blue-400'}`}>
-                      {percentage}% {(!isFinished && answered > 0) && <span className="text-sm font-normal text-slate-500">(Current)</span>}
-                    </p>
-                    <p className="text-xs text-slate-400 mt-1">{correct} out of {isFinished ? total : answered} correct</p>
+                  <div className="text-left md:text-right flex items-center justify-between md:justify-end md:flex-row md:items-start gap-4">
+                    <div className="flex flex-col items-start md:items-end md:justify-end">
+                      <p className={`text-3xl font-extrabold ${isFinished ? (passed ? 'text-amber-500' : 'text-red-500') : 'text-blue-400'}`}>
+                        {percentage}% {(!isFinished && answered > 0) && <span className="text-sm font-normal text-slate-500">(Current)</span>}
+                      </p>
+                      <p className="text-xs text-slate-400 mt-1 flex justify-end">{correct} out of {isFinished ? total : answered} correct</p>
+                      {!isFinished && (
+                        <button 
+                          onClick={() => onNavigate({ type: 'quiz', certId, examId: attempt.examId, resumeAttemptId: attempt.id })}
+                          className="mt-3 shrink-0 bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-lg shadow-blue-500/20"
+                        >
+                          Resume
+                        </button>
+                      )}
+                    </div>
+                    <button 
+                      onClick={() => removeAttempt(attempt.id)}
+                      className="p-2 text-slate-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors ml-4"
+                      title="Remove attempt"
+                    >
+                      <Trash2 className="w-5 h-5" />
+                    </button>
                   </div>
                 </div>
 

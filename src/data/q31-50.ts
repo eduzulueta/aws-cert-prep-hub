@@ -10,7 +10,9 @@ export const questions31to50 = [
       "Amazon Kinesis Data Streams with Amazon Simple Notification Service (Amazon SNS)"
     ],
     correctAnswerIndex: 3,
-    explanation: "Kinesis Data Streams is built for real-time analytics of streaming data, and SNS natively supports push notifications directly to mobile devices running Apple, Google, and Fire OS architectures."
+    explanation: "Kinesis Data Streams is built for real-time analytics of streaming data, and SNS natively supports push notifications directly to mobile devices running Apple, Google, and Fire OS architectures.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q32",
@@ -23,7 +25,9 @@ export const questions31to50 = [
       "Create a Global Secondary Index (GSI)"
     ],
     correctAnswerIndex: 1,
-    explanation: "A Local Secondary Index (LSI) allows querying by an alternate sort key but MUST be defined precisely when the table is originally created, unlike Global Secondary Indexes (GSIs)."
+    explanation: "A Local Secondary Index (LSI) allows querying by an alternate sort key but MUST be defined precisely when the table is originally created, unlike Global Secondary Indexes (GSIs).",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q33",
@@ -36,7 +40,9 @@ export const questions31to50 = [
       "Use Amazon OpenSearch Ingestion Pipelines to pull data from S3, process the log files, and index them into Amazon OpenSearch Service. Use OpenSearch Dashboards for real-time visualization. Enable scheduled queries with AWS Glue for historical analysis and reporting"
     ],
     correctAnswerIndex: 0,
-    explanation: "This combination uses fully serverless services optimized for object processing (S3 Events + Lambda + Glue). Processed output seamlessly drives ad hoc (Athena) and dashboard (QuickSight) workflows at low overhead."
+    explanation: "This combination uses fully serverless services optimized for object processing (S3 Events + Lambda + Glue). Processed output seamlessly drives ad hoc (Athena) and dashboard (QuickSight) workflows at low overhead.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q34",
@@ -49,7 +55,9 @@ export const questions31to50 = [
       "Use Aurora MySQL as the database with Aurora cluster cache"
     ],
     correctAnswerIndex: 2,
-    explanation: "DynamoDB + DAX fits the constraints of serverless resilient NoSQL storage for IoT records paired with in-memory caching to guarantee rapid microsecond reads with very low operational maintenance."
+    explanation: "DynamoDB + DAX fits the constraints of serverless resilient NoSQL storage for IoT records paired with in-memory caching to guarantee rapid microsecond reads with very low operational maintenance.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q35",
@@ -64,7 +72,9 @@ export const questions31to50 = [
     ],
     correctAnswerIndex: -1,
     correctAnswerIndices: [2, 3],
-    explanation: "A recovered instance retains its exact identical metadata properties, including Elastic and public IP assignments. In-memory data is lost because the underlying virtualization hosts undergo a reboot-like event."
+    explanation: "A recovered instance retains its exact identical metadata properties, including Elastic and public IP assignments. In-memory data is lost because the underlying virtualization hosts undergo a reboot-like event.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q36",
@@ -78,6 +88,8 @@ export const questions31to50 = [
     ],
     correctAnswerIndex: 1,
     explanation: "Kinesis Data Firehose can natively convert incoming JSON data to columnar formats like Parquet or ORC before storing the data in Amazon S3. This requires an AWS Glue Data Catalog table that defines the schema of the incoming data.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation",
     whyCorrect: "Kinesis Data Firehose has built-in 'Record format conversion' capability that converts JSON to Parquet/ORC natively. It relies on an AWS Glue Data Catalog schema to understand the target format.",
     whyIncorrect: "While Lambda can transform payloads, doing format conversion manually inside Lambda is complex and not the native way. Kinesis Data Analytics is mainly for SQL over streaming and isn't required just for static format conversions. Triggering an S3 event does the conversion AFTER landing, not before.",
     decisionHack: "Firehose JSON -> Parquet native conversion = Always requires AWS Glue Data Catalog.",
@@ -94,7 +106,9 @@ export const questions31to50 = [
       "Use Amazon S3 Replication to copy the data from the S3 bucket to Redshift"
     ],
     correctAnswerIndex: 2,
-    explanation: "AWS Glue connects S3 and Redshift easily, allowing for advanced extraction, transformation, filtering, and joining before placing the incremental data reliably in the data warehouse."
+    explanation: "AWS Glue connects S3 and Redshift easily, allowing for advanced extraction, transformation, filtering, and joining before placing the incremental data reliably in the data warehouse.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q38",
@@ -108,7 +122,9 @@ export const questions31to50 = [
     ],
     correctAnswerIndex: -1,
     correctAnswerIndices: [0, 2],
-    explanation: "Both DynamoDB (with DAX or single-digit MS latency features) and Amazon ElastiCache (Redis) support millions of active concurrent users with high scale and extreme low latency operations suitable for global leaderboards."
+    explanation: "Both DynamoDB (with DAX or single-digit MS latency features) and Amazon ElastiCache (Redis) support millions of active concurrent users with high scale and extreme low latency operations suitable for global leaderboards.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q39",
@@ -121,7 +137,9 @@ export const questions31to50 = [
       "Create a SQL query on the SQL Server database hosted on the EC2 instances to establish a view containing the necessary data elements. Then, configure an AWS Glue crawler to access and read this view. Set up an AWS Glue job to extract the data and convert it into Parquet format before transferring it to an S3 bucket. Configure this AWS Glue job to execute daily"
     ],
     correctAnswerIndex: 3,
-    explanation: "Creating a SQL view to simplify joins and letting AWS Glue automatically crawl the schema and orchestrate a governed, serverless ETL script is structurally the most efficient architecture."
+    explanation: "Creating a SQL view to simplify joins and letting AWS Glue automatically crawl the schema and orchestrate a governed, serverless ETL script is structurally the most efficient architecture.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q40",
@@ -134,7 +152,9 @@ export const questions31to50 = [
       "Amazon S3 Intelligent Tiering"
     ],
     correctAnswerIndex: 2,
-    explanation: "Amazon EFS integrates natively with Linux instances offering auto-tiering capability to EFS Infrequent Access for older files, significantly reducing storage costs dynamically."
+    explanation: "Amazon EFS integrates natively with Linux instances offering auto-tiering capability to EFS Infrequent Access for older files, significantly reducing storage costs dynamically.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q41",
@@ -147,7 +167,9 @@ export const questions31to50 = [
       "Use Amazon EMR to replicate the data from the databases into Amazon Redshift"
     ],
     correctAnswerIndex: 2,
-    explanation: "AWS DMS sets up highly available continuous homogeneous/heterogeneous replications with minimal operational development code overhead."
+    explanation: "AWS DMS sets up highly available continuous homogeneous/heterogeneous replications with minimal operational development code overhead.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q42",
@@ -160,7 +182,9 @@ export const questions31to50 = [
       "Set up spot fleet configurations for core and task nodes. Leverage the CloudWatch CapacityRemainingGB metric to configure automatic scaling policies to scale out/scale in the spot fleet"
     ],
     correctAnswerIndex: 0,
-    explanation: "Because memory is the bottleneck due to heavy query processing while HDFS storage stays low, scaling Instance Groups up leveraging the YARNMemoryAvailablePercentage auto-scaling capabilities balances the cluster execution needs."
+    explanation: "Because memory is the bottleneck due to heavy query processing while HDFS storage stays low, scaling Instance Groups up leveraging the YARNMemoryAvailablePercentage auto-scaling capabilities balances the cluster execution needs.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q43",
@@ -173,7 +197,9 @@ export const questions31to50 = [
       "You can configure Amazon EMR to use Amazon S3 as the Hadoop storage layer while launching the EMR cluster"
     ],
     correctAnswerIndex: 0,
-    explanation: "EMR primarily utilizes HDFS natively inside the EC2 nodes; while it integrates with S3 via EMRFS, S3 cannot outright REPLACE HDFS entirely as the cluster's core foundational storage component."
+    explanation: "EMR primarily utilizes HDFS natively inside the EC2 nodes; while it integrates with S3 via EMRFS, S3 cannot outright REPLACE HDFS entirely as the cluster's core foundational storage component.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q44",
@@ -188,7 +214,9 @@ export const questions31to50 = [
     ],
     correctAnswerIndex: -1,
     correctAnswerIndices: [0, 1, 3],
-    explanation: "Converting textual data to a highly compressed columnar format like Parquet combined with explicit `date=val/` format S3 partitions, managed via explicit partition statements ensures high performance queries with minimal Athena scanning costs."
+    explanation: "Converting textual data to a highly compressed columnar format like Parquet combined with explicit `date=val/` format S3 partitions, managed via explicit partition statements ensures high performance queries with minimal Athena scanning costs.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q45",
@@ -201,7 +229,9 @@ export const questions31to50 = [
       "Store the database access credentials in a KMS encrypted text file on EFS. Configure the application web servers to retrieve the credentials from EFS on system boot. Write custom code to change the database access credentials stored on the encrypted file after 90 days"
     ],
     correctAnswerIndex: 0,
-    explanation: "Secrets Manager is natively designed specifically to handle sensitive keys/passwords, seamlessly handling automated key rotation with native integration supporting RDS database engines like PostgreSQL."
+    explanation: "Secrets Manager is natively designed specifically to handle sensitive keys/passwords, seamlessly handling automated key rotation with native integration supporting RDS database engines like PostgreSQL.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q46",
@@ -214,7 +244,9 @@ export const questions31to50 = [
       "Use AWS Lake Formation to define access policies for each of the teams separately to restrict access to query history for the respective teams and control costs"
     ],
     correctAnswerIndex: 2,
-    explanation: "Athena workgroups naturally isolate execution history, metric tracking, and scan data usage limits across different teams inside the same AWS account by leveraging resource tagging constraints inside IAM."
+    explanation: "Athena workgroups naturally isolate execution history, metric tracking, and scan data usage limits across different teams inside the same AWS account by leveraging resource tagging constraints inside IAM.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q47",
@@ -227,7 +259,9 @@ export const questions31to50 = [
       "Create an Amazon EventBridge event that reacts to object uploads in Amazon S3 and invokes one of the Amazon EC2 instances"
     ],
     correctAnswerIndex: 0,
-    explanation: "By piping events through an Amazon SQS queue and allowing instances to poll from it, exactly ONE instance will process any given incoming message, establishing high decoupling and guaranteed execution without replication conflicts."
+    explanation: "By piping events through an Amazon SQS queue and allowing instances to poll from it, exactly ONE instance will process any given incoming message, establishing high decoupling and guaranteed execution without replication conflicts.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q48",
@@ -240,7 +274,9 @@ export const questions31to50 = [
       "Leverage AWS Glue DataBrew to analyze the data stored on Amazon S3"
     ],
     correctAnswerIndex: 3,
-    explanation: "AWS Glue DataBrew provides a powerful visual data preparation platform that easily manages 250+ transforms automatically, handling non-traditional data sources like specific raw Microsoft Excel files."
+    explanation: "AWS Glue DataBrew provides a powerful visual data preparation platform that easily manages 250+ transforms automatically, handling non-traditional data sources like specific raw Microsoft Excel files.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q49",
@@ -253,7 +289,9 @@ export const questions31to50 = [
       "Storage class analysis only provides recommendations for Standard to Glacier Flexible Retrieval classes"
     ],
     correctAnswerIndex: 2,
-    explanation: "Amazon S3 Analytics evaluates storage access patterns to intelligently and exclusively provide optimization transitions from Amazon S3 Standard down to specifically Amazon S3 Standard-IA."
+    explanation: "Amazon S3 Analytics evaluates storage access patterns to intelligently and exclusively provide optimization transitions from Amazon S3 Standard down to specifically Amazon S3 Standard-IA.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q50",
@@ -266,6 +304,8 @@ export const questions31to50 = [
       "When joining two tables in Athena, specify the smaller table on the left side of the join and the larger table on the right side of the join to consume less memory and run queries faster"
     ],
     correctAnswerIndex: 1,
-    explanation: "Running an AWS Glue job to transform naive uncompressed flat files to columnar binary structure (Parquet) and establishing strict S3 partitions drastically reduces querying overhead and boosts Athena scale performance."
+    explanation: "Running an AWS Glue job to transform naive uncompressed flat files to columnar binary structure (Parquet) and establishing strict S3 partitions drastically reduces querying overhead and boosts Athena scale performance.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   }
 ];

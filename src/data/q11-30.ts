@@ -10,7 +10,10 @@ export const questions11to30 = [
       "Configure a lifecycle policy to transition the objects to Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA) after 30 days"
     ],
     correctAnswerIndex: 3,
-    explanation: "Re-creatable assets can use One Zone-IA to reduce costs. Since immediate access is still required, IA is appropriate. S3 requires objects to be stored at least 30 days in Standard before transitioning to One Zone-IA."
+    explanation: "Re-creatable assets can use One Zone-IA to reduce costs. Since immediate access is still required, IA is appropriate. S3 requires objects to be stored at least 30 days in Standard before transitioning to One Zone-IA.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q12",
@@ -25,7 +28,10 @@ export const questions11to30 = [
     ],
     correctAnswerIndex: -1,
     correctAnswerIndices: [0, 2],
-    explanation: "Kinesis Data Streams scales well to ingest large volume streaming data. Fargate is serverless and can run tasks up to 30 mins easily, avoiding Lambda's 15 min limit."
+    explanation: "Kinesis Data Streams scales well to ingest large volume streaming data. Fargate is serverless and can run tasks up to 30 mins easily, avoiding Lambda's 15 min limit.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q13",
@@ -38,7 +44,10 @@ export const questions11to30 = [
       "Access and integrate third-party datasets available through AWS Data Exchange"
     ],
     correctAnswerIndex: 3,
-    explanation: "AWS Data Exchange is a service that makes it easy to find, subscribe to, and use third-party data in the cloud."
+    explanation: "AWS Data Exchange is a service that makes it easy to find, subscribe to, and use third-party data in the cloud.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q14",
@@ -51,7 +60,10 @@ export const questions11to30 = [
       "Throughput Optimized HDD (st1)"
     ],
     correctAnswerIndex: 0,
-    explanation: "Provisioned IOPS SSD (io1) is designed to meet the needs of I/O-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency."
+    explanation: "Provisioned IOPS SSD (io1) is designed to meet the needs of I/O-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q15",
@@ -64,7 +76,10 @@ export const questions11to30 = [
       "GetRecords.IteratorAgeMilliseconds"
     ],
     correctAnswerIndex: 3,
-    explanation: "GetRecords.IteratorAgeMilliseconds metric tracks the age of the last record read from the stream, helping you measure how far behind the consumers are."
+    explanation: "GetRecords.IteratorAgeMilliseconds metric tracks the age of the last record read from the stream, helping you measure how far behind the consumers are.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q16",
@@ -79,7 +94,10 @@ export const questions11to30 = [
     ],
     correctAnswerIndex: -1,
     correctAnswerIndices: [0, 2],
-    explanation: "You cannot transition from any storage class back to S3 Standard. You also cannot transition from S3 One Zone-IA to S3 Standard-IA."
+    explanation: "You cannot transition from any storage class back to S3 Standard. You also cannot transition from S3 One Zone-IA to S3 Standard-IA.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q17",
@@ -92,7 +110,10 @@ export const questions11to30 = [
       "Leverage Kinesis Data Analytics to detect anomalies on a data stream from Kinesis Streams by running SQL queries which compute an anomaly score for all transactions and then store all fraudulent transactions in Amazon S3. Use Amazon QuickSight to visualize the results from Amazon S3"
     ],
     correctAnswerIndex: 2,
-    explanation: "Using QuickSight's built-in ML-powered anomaly detection over data prepared by Glue and queried with Athena provides the required functionality with lowest cost and least development."
+    explanation: "Using QuickSight's built-in ML-powered anomaly detection over data prepared by Glue and queried with Athena provides the required functionality with lowest cost and least development.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q18",
@@ -105,7 +126,10 @@ export const questions11to30 = [
       "Server-side encryption with customer-provided keys (SSE-C)"
     ],
     correctAnswerIndex: 2,
-    explanation: "SSE-S3 uses AES-256 and Amazon fully manages the encryption keys, satisfying both requirements."
+    explanation: "SSE-S3 uses AES-256 and Amazon fully manages the encryption keys, satisfying both requirements.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q19",
@@ -118,7 +142,10 @@ export const questions11to30 = [
       "Utilize AWS Glue to detect the schema including any ongoing changes. Extract, transform, and load the data into the S3 bucket by creating the ETL pipeline in Apache Spark"
     ],
     correctAnswerIndex: 3,
-    explanation: "AWS Glue provides automated schema discovery via Glue Crawlers and managed Spark ETL, minimizing operational overhead."
+    explanation: "AWS Glue provides automated schema discovery via Glue Crawlers and managed Spark ETL, minimizing operational overhead.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q20",
@@ -131,7 +158,10 @@ export const questions11to30 = [
       "Distribute the dynamic content through Amazon S3"
     ],
     correctAnswerIndex: 0,
-    explanation: "Offloading static content to Amazon S3 is highly cost-effective and drastically reduces network traffic through the ECS cluster and ALB."
+    explanation: "Offloading static content to Amazon S3 is highly cost-effective and drastically reduces network traffic through the ECS cluster and ALB.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q21",
@@ -146,7 +176,10 @@ export const questions11to30 = [
     ],
     correctAnswerIndex: -1,
     correctAnswerIndices: [1, 4],
-    explanation: "Custom bootstrap actions and custom AMIs are the two standard ways to automate the installation of additional software on Amazon EMR clusters."
+    explanation: "Custom bootstrap actions and custom AMIs are the two standard ways to automate the installation of additional software on Amazon EMR clusters.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q22",
@@ -159,7 +192,10 @@ export const questions11to30 = [
       "Amazon Simple Queue Service (Amazon SQS) + AWS Lambda"
     ],
     correctAnswerIndex: 2,
-    explanation: "DynamoDB Streams capture table modifications in near real-time and can trigger an AWS Lambda function automatically with minimal delay."
+    explanation: "DynamoDB Streams capture table modifications in near real-time and can trigger an AWS Lambda function automatically with minimal delay.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q23",
@@ -172,7 +208,10 @@ export const questions11to30 = [
       "The validation process should be moved from AWS Lambda to Amazon Firehose to accommodate the high volumes of data"
     ],
     correctAnswerIndex: 2,
-    explanation: "Increasing the number of shards allows you to process more data concurrently, reducing lag, while the user ID partition key guarantees ordered processing per user."
+    explanation: "Increasing the number of shards allows you to process more data concurrently, reducing lag, while the user ID partition key guarantees ordered processing per user.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q24",
@@ -185,7 +224,10 @@ export const questions11to30 = [
       "Use AWS Certificate Manager (ACM) to provision and manage public or private SSL/TLS certificates. Attach the certificates to integrated AWS resources such as Elastic Load Balancers or CloudFront distributions"
     ],
     correctAnswerIndex: 3,
-    explanation: "AWS Certificate Manager (ACM) natively handles the complexity of creating, storing, and automatically renewing public SSL/TLS certificates, requiring zero operational overhead when integrated with ELB/CloudFront."
+    explanation: "AWS Certificate Manager (ACM) natively handles the complexity of creating, storing, and automatically renewing public SSL/TLS certificates, requiring zero operational overhead when integrated with ELB/CloudFront.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q25",
@@ -198,7 +240,10 @@ export const questions11to30 = [
       "Package the custom Python scripts into Lambda layers. Apply the Lambda layers to all the AWS Lambda functions using the scripts"
     ],
     correctAnswerIndex: 3,
-    explanation: "Lambda layers are designed specifically to package libraries and shared code separately from the deployment package, allowing you to easily update that common code across multiple functions."
+    explanation: "Lambda layers are designed specifically to package libraries and shared code separately from the deployment package, allowing you to easily update that common code across multiple functions.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q26",
@@ -211,7 +256,10 @@ export const questions11to30 = [
       "3 partitions"
     ],
     correctAnswerIndex: 1,
-    explanation: "DynamoDB calculates partitions based on throughput and size. Throughput math: (5000 / 3000) + (500 / 1000) = 1.66 + 0.5 = 2.16. Size math: 50GB / 10GB = 5. The total partitions created is the maximum of the throughput req (3) vs size req (5) = 5 partitions."
+    explanation: "DynamoDB calculates partitions based on throughput and size. Throughput math: (5000 / 3000) + (500 / 1000) = 1.66 + 0.5 = 2.16. Size math: 50GB / 10GB = 5. The total partitions created is the maximum of the throughput req (3) vs size req (5) = 5 partitions.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q27",
@@ -224,7 +272,10 @@ export const questions11to30 = [
       "Transfer the on-premises data into multiple AWS Snowball Edge Storage Optimized devices. Copy the AWS Snowball Edge data into Amazon S3 Glacier"
     ],
     correctAnswerIndex: 0,
-    explanation: "A Snowball Edge is optimal for multi-PB offline transfers. The data is initially loaded into S3, and standard lifecycle policies ensure cost-effective movement to Glacier."
+    explanation: "A Snowball Edge is optimal for multi-PB offline transfers. The data is initially loaded into S3, and standard lifecycle policies ensure cost-effective movement to Glacier.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q28",
@@ -239,7 +290,10 @@ export const questions11to30 = [
     ],
     correctAnswerIndex: -1,
     correctAnswerIndices: [2, 3],
-    explanation: "AWS SCT converts complex database schemas and configurations (indexes, keys, procedures) to target engines, while AWS DMS handles the continuous or batch data migration."
+    explanation: "AWS SCT converts complex database schemas and configurations (indexes, keys, procedures) to target engines, while AWS DMS handles the continuous or batch data migration.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q29",
@@ -254,7 +308,10 @@ export const questions11to30 = [
     ],
     correctAnswerIndex: -1,
     correctAnswerIndices: [0, 3],
-    explanation: "Parquet provides native columnar compression optimizing Athena reads, checking only required fields for query predicates. Moving S3 bucket processing to the same region as queries reduces cross-region transfer latencies."
+    explanation: "Parquet provides native columnar compression optimizing Athena reads, checking only required fields for query predicates. Moving S3 bucket processing to the same region as queries reduces cross-region transfer latencies.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   },
   {
     id: "q30",
@@ -267,6 +324,9 @@ export const questions11to30 = [
       "Atomic Counters"
     ],
     correctAnswerIndex: 1,
-    explanation: "Conditional writes ensure an explicit condition validates the current item's state (e.g. attribute_not_exists) before allowing an update or put operation to proceed, effectively preventing unwarranted overwrites."
+    explanation: "Conditional writes ensure an explicit condition validates the current item's state (e.g. attribute_not_exists) before allowing an update or put operation to proceed, effectively preventing unwarranted overwrites.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
+    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
   }
 ];
