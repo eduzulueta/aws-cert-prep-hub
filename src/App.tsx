@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { certifications, Certification, Exam } from './data';
 import { courseSlides } from './slides';
+import { slideDecks } from './SlideData';
 import { 
   BookOpen, 
   GraduationCap, 
@@ -32,7 +33,7 @@ type ViewState =
   | { type: 'progress'; certId: string }
   | { type: 'solutions'; certId: string }
   | { type: 'resources'; certId: string }
-  | { type: 'slides'; certId: string };
+  | { type: 'slides'; certId: string; slideId: string };
 
 export default function App() {
   const [viewState, setViewState] = useState<ViewState>({ type: 'home' });
@@ -52,7 +53,7 @@ export default function App() {
       case 'resources':
         return <ResourcesView certId={viewState.certId} onNavigate={setViewState} />;
       case 'slides':
-        return <SlidesViewAppWrapper certId={viewState.certId} onNavigate={setViewState} />;
+        return <SlidesViewAppWrapper certId={viewState.certId} slideId={viewState.slideId} onNavigate={setViewState} />;
       case 'progress':
         return <ProgressView certId={viewState.certId} onNavigate={setViewState} />;
     }
@@ -253,16 +254,19 @@ function ResourcesView({ certId, onNavigate }: { certId: string; onNavigate: (vi
           </h3>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {slideDecks.map((deck) => (
             <button 
-              onClick={() => onNavigate({ type: 'slides', certId })}
+              key={deck.id}
+              onClick={() => onNavigate({ type: 'slides', certId, slideId: deck.id })}
               className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#16161A] border border-white/5 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all text-center group"
             >
               <div className="w-12 h-12 rounded-full bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-4 transition-colors">
-                <Database className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                <deck.icon className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
               </div>
-              <h4 className="text-sm font-bold text-slate-200 group-hover:text-white transition-colors tracking-wide">Storage Section</h4>
+              <h4 className="text-sm font-bold text-slate-200 group-hover:text-white transition-colors tracking-wide">{deck.title}</h4>
               <p className="text-[10px] uppercase font-bold text-emerald-500 tracking-widest mt-2 border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 rounded">View Full Slides</p>
             </button>
+          ))}
         </div>
       </div>
 

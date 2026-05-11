@@ -88,8 +88,6 @@ export const questions31to50 = [
     ],
     correctAnswerIndex: 1,
     explanation: "Kinesis Data Firehose can natively convert incoming JSON data to columnar formats like Parquet or ORC before storing the data in Amazon S3. This requires an AWS Glue Data Catalog table that defines the schema of the incoming data.",
-    whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation",
     whyCorrect: "Kinesis Data Firehose has built-in 'Record format conversion' capability that converts JSON to Parquet/ORC natively. It relies on an AWS Glue Data Catalog schema to understand the target format.",
     whyIncorrect: "While Lambda can transform payloads, doing format conversion manually inside Lambda is complex and not the native way. Kinesis Data Analytics is mainly for SQL over streaming and isn't required just for static format conversions. Triggering an S3 event does the conversion AFTER landing, not before.",
     decisionHack: "Firehose JSON -> Parquet native conversion = Always requires AWS Glue Data Catalog.",
