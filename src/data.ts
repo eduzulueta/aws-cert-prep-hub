@@ -68,8 +68,8 @@ export const certifications: Certification[] = [
             explanation: "Amazon CloudFront with S3 is the most cost-effective and operationally efficient way to deliver static assets globally with low latency.",
             whyCorrect: "Option D is correct. Amazon CloudFront is a Content Delivery Network (CDN) that seamlessly integrates with Amazon S3. S3 is designed specifically for durable, scalable object storage like static assets. CloudFront caches these assets at edge locations globally, drastically reducing latency and offloading traffic from the origin servers with very little operational overhead.",
             whyIncorrect: "Option A is incorrect because using ElastiCache and RDS for static files is an anti-pattern; RDS and ElastiCache are meant for dynamic/relational or key-value data, not broad static asset delivery. Option B is incorrect because DynamoDB is a NoSQL database, not an object store for large static assets. Option C is incorrect because computing power (Lambda) + relational DB (RDS) introduces high operational overhead and cost for serving static files.",
-            decisionHack: "Static Assets Delivery = S3 + CloudFront.",
-            docLink: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html#concept_S3Origin"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           {
             id: "q2",
@@ -85,8 +85,8 @@ export const certifications: Certification[] = [
             explanation: "Amazon Kinesis Data Streams allows multiple consumers (internal applications) to read the same stream of data in near-real time while letting AWS Lambda process and scrub sensitive data to load into DynamoDB.",
             whyCorrect: "Option D is correct. Amazon Kinesis Data Streams is designed for real-time, highly scalable streaming of thousands of transactions. An AWS Lambda function can consume the Kinesis stream, strip sensitive data (transformation), and write the cleansed records to DynamoDB. Other apps can consume the same Kinesis stream using consumer fan-out.",
             whyIncorrect: "Option A uses flat files in S3 and batch processing, which is NOT near-real-time. Option B uses DynamoDB rules which don't exist in that sense (DynamoDB Streams triggers Lambda after the write, not before). Option C uses Kinesis Firehose, which natively writes to destinations like S3/Redshift/Elasticsearch, but it doesn't support fan-out for multiple internal application consumers exactly like Data Streams docs.",
-            decisionHack: "Near-Real-Time + Multiple Consumers + Transformation = Kinesis Data Streams + Lambda.",
-            docLink: "https://docs.aws.amazon.com/streams/latest/dev/building-consumers.html"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           {
             id: "q3",
@@ -102,8 +102,8 @@ export const certifications: Certification[] = [
             explanation: "Redshift Concurrency Scaling is enabled by routing queries to a workload manager (WLM) queue that has concurrency scaling mode set to auto.",
             whyCorrect: "Option C is correct. Concurrency Scaling allows Amazon Redshift to automatically add cluster capacity to support thousands of concurrent users and queries. To enable it, you simply set the 'Concurrency Scaling mode' to 'auto' for a Workload Management (WLM) queue.",
             whyIncorrect: "Option A is incorrect because SQA (Short Query Acceleration) simply prioritizes short queries over long ones within the existing cluster resources; it doesn't add capacity (concurrency scaling). Option B is incorrect because concurrency is managed via WLM, not isolated parameter groups. Option D is incorrect because you do not need to switch to DC2 nodes; RA3 nodes support concurrency scaling perfectly.",
-            decisionHack: "Redshift Concurrency Scaling = WLM Queue set to auto.",
-            docLink: "https://docs.aws.amazon.com/redshift/latest/dg/concurrency-scaling.html"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           {
             id: "q4",
@@ -118,8 +118,8 @@ export const certifications: Certification[] = [
             correctAnswerIndex: 0,
             explanation: "Amazon Athena Federated Query enables analysts and data engineers to run SQL queries across data stored in relational, non-relational, object, and custom data sources directly without moving data.",
             whyIncorrect: "• S3 Select doesn't query RDS.\\n\\n• AWS Glue jobs copy data instead of querying it in place.\\n\\n• Redshift Spectrum queries S3 but typically needs federation through Aurora or other configurations.\\n\\n• DynamoDB isn't a SQL engine spanning databases.",
-            decisionHack: "Serverless SQL Query spanning across diverse sources without moving data? Athena Federated Query.",
-            docLink: "https://docs.aws.amazon.com/athena/latest/ug/connect-to-a-data-source.html"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           {
             id: "q5",
@@ -133,8 +133,8 @@ export const certifications: Certification[] = [
             ],
             correctAnswerIndex: 2,
             explanation: "Amazon EventBridge is a serverless event bus perfectly suited for SaaS application integration and decoupling architectures asynchronously via event-driven routing.",
-            decisionHack: "SaaS events or custom application events routing -> EventBridge.",
-            docLink: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           {
             id: "q6",
@@ -149,8 +149,8 @@ export const certifications: Certification[] = [
             correctAnswerIndex: 1,
             explanation: "gp2/gp3 volumes are General Purpose SSDs that balance price and performance and offer burstable performance for occasional I/O bursts, which makes them far more cost-effective than io1 for under-utilized requirements.",
             whyIncorrect: "• Changing the Amazon EC2 instance type to something much smaller is incorrect because the Amazon EC2 instance accounts for only 10% of the cost. The main issue is the EBS volume cost.\n\n• AWS CloudFormation is free of charge, you only pay for the underlying resources it provisions.\n\n• Keeping the Amazon EBS volume to io1 and reducing the IOPS will still be more expensive than switching to gp2/gp3, which natively handle occasional I/O bursts much more cost-effectively.",
-            decisionHack: "Occasional I/O bursts + under-utilized -> gp2/gp3. io1 is only for sustained, high-throughput I/O.",
-            docLink: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           {
             id: "q7",
@@ -168,8 +168,8 @@ export const certifications: Certification[] = [
             correctAnswerIndices: [1, 4, 5],
             explanation: "When you encrypt an Amazon EBS volume, data at rest inside the volume, data moving between the volume and the instance, and any snapshot created from the volume are encrypted.",
             whyIncorrect: "• Data at rest inside the volume is NOT encrypted is incorrect because EBS encryption covers data at rest.\n\n• Any snapshot created from the volume is NOT encrypted is incorrect. Snapshots of encrypted volumes are automatically encrypted.\n\n• Data moving between the volume and the instance is NOT encrypted is incorrect. EBS encryption secures data in transit between the volume and the instance.",
-            decisionHack: "EBS Encryption secures: Data at rest, Data in transit (volume to instance), and all volume snapshots.",
-            docLink: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           {
             id: "q8",
@@ -184,8 +184,8 @@ export const certifications: Certification[] = [
             correctAnswerIndex: 2,
             explanation: "Amazon S3 does not encrypt object metadata. Server-Side Encryption only encrypts the object data itself.",
             whyIncorrect: "• AES-256 is the default algorithm for S3 encryption.\\n\\n• S3 encrypts the data during rest.\\n\\n• SSE-S3 is a valid encryption mode.",
-            decisionHack: "S3 Server Side Encryption DOES NOT encrypt metadata, only object data.",
-            docLink: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           {
             id: "q9",
@@ -202,8 +202,8 @@ export const certifications: Certification[] = [
             correctAnswerIndices: [2, 4],
             explanation: "Using an AWS Lambda function with start_query_execution is cost-effective, but because it may run over 15 minutes, you can orchestrate it via AWS Step Functions with a Wait state loop checking the query status using get_query_execution.",
             whyIncorrect: "• Extending Lambda timeout past 15 min is impossible.\\n\\n• CodePipeline is for CI/CD, not query polling loops.\\n\\n• Kinesis Data Analytics handles streaming data, not long batch query state machines.",
-            decisionHack: "State machine polling / long execution workflows > 15 minutes = AWS Step Functions.",
-            docLink: "https://docs.aws.amazon.com/step-functions/latest/dg/connect-athena.html"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           {
             id: "q10",
@@ -218,8 +218,8 @@ export const certifications: Certification[] = [
             correctAnswerIndex: 0,
             explanation: "Producer network timeouts can cause records to be retried and result in identical duplicate entries in Kinesis Data Streams.",
             whyIncorrect: "• ProvisionedThroughputExceededException causes throttling, not silent duplication.\\n\\n• CloudWatch alarms do not inject data.\\n\\n• Shard iteration timeouts result in slow processing, not duplicate generation at the source.",
-            decisionHack: "Network timeout in Kinesis Producer causing retries -> generates duplicate records.",
-            docLink: "https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html"
+            decisionHack: "Apply the right AWS capability for the use case.",
+            docLink: "https://docs.aws.amazon.com/"
           },
           ...questions11to30,
           ...questions31to50,

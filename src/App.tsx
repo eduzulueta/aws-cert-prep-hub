@@ -1,8 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { certifications, Certification, Exam } from './data';
-import { courseSlides } from './slides';
-import { slideDecks } from './SlideData';
 import { 
   BookOpen, 
   GraduationCap, 
@@ -23,7 +21,6 @@ import {
   MessageSquare,
   HardDrive, Database, ArrowRightLeft, Cpu, Box, LineChart, Layers, Shield, Globe, Sliders, Terminal, MoreHorizontal, MonitorPlay, Trash2
 } from 'lucide-react';
-import { SlidesViewAppWrapper } from './SlidesView';
 
 type ViewState = 
   | { type: 'home' }
@@ -32,8 +29,7 @@ type ViewState =
   | { type: 'quiz'; certId: string; examId: string; resumeAttemptId?: string }
   | { type: 'progress'; certId: string }
   | { type: 'solutions'; certId: string }
-  | { type: 'resources'; certId: string }
-  | { type: 'slides'; certId: string; slideId: string };
+  | { type: 'resources'; certId: string };
 
 export default function App() {
   const [viewState, setViewState] = useState<ViewState>({ type: 'home' });
@@ -52,8 +48,6 @@ export default function App() {
         return <SolutionsView certId={viewState.certId} onNavigate={setViewState} />;
       case 'resources':
         return <ResourcesView certId={viewState.certId} onNavigate={setViewState} />;
-      case 'slides':
-        return <SlidesViewAppWrapper certId={viewState.certId} slideId={viewState.slideId} onNavigate={setViewState} />;
       case 'progress':
         return <ProgressView certId={viewState.certId} onNavigate={setViewState} />;
     }
@@ -246,30 +240,6 @@ function ResourcesView({ certId, onNavigate }: { certId: string; onNavigate: (vi
         <div className="h-1 w-20 bg-amber-500 rounded font-mono mt-4"></div>
       </div>
 
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xl font-bold text-white flex items-center gap-2">
-            <MonitorPlay className="w-5 h-5 text-amber-500" />
-            Course Slides
-          </h3>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {slideDecks.map((deck) => (
-            <button 
-              key={deck.id}
-              onClick={() => onNavigate({ type: 'slides', certId, slideId: deck.id })}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#16161A] border border-white/5 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all text-center group"
-            >
-              <div className="w-12 h-12 rounded-full bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-4 transition-colors">
-                <deck.icon className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
-              </div>
-              <h4 className="text-sm font-bold text-slate-200 group-hover:text-white transition-colors tracking-wide">{deck.title}</h4>
-              <p className="text-[10px] uppercase font-bold text-emerald-500 tracking-widest mt-2 border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 rounded">View Full Slides</p>
-            </button>
-          ))}
-        </div>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10">
         
         {/* Core Documents */}
@@ -281,6 +251,23 @@ function ResourcesView({ certId, onNavigate }: { certId: string; onNavigate: (vi
             </h3>
             
             <div className="space-y-4 flex-1">
+              <a 
+                href="/Course_Slides.pdf" 
+                target="_blank" rel="noreferrer" 
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors border border-amber-500/30 bg-amber-500/10 group"
+              >
+                <div className="p-2 bg-amber-500/20 rounded-lg shrink-0">
+                  <MonitorPlay className="w-5 h-5 text-amber-400" />
+                </div>
+                <div>
+                  <h4 className="text-white font-bold mb-1 flex items-center gap-2">
+                    Complete Course Slides
+                    <ExternalLink className="w-3 h-3 text-amber-400 opacity-70 group-hover:opacity-100 transition-opacity" />
+                  </h4>
+                  <p className="text-xs text-amber-200/70 leading-relaxed">AWS Certified Data Engineer Associate Course (DEA-C01) slides.</p>
+                </div>
+              </a>
+
               <a 
                 href={cert.guideUrl || "https://aws.amazon.com/certification/"} 
                 target="_blank" rel="noreferrer" 

@@ -12,7 +12,8 @@ export const questions51to65 = [
     correctAnswerIndex: 0,
     explanation: "Apache Parquet naturally partitions data column-wise, drastically reducing execution time when querying specifically focused individual columns. Combining this format with optimal block-based compression algorithms like Snappy maximizes optimization.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q52",
@@ -27,7 +28,8 @@ export const questions51to65 = [
     correctAnswerIndex: 2,
     explanation: "SageMaker notebooks allow direct code execution leveraging standard Python libraries directly. Passing IAM credentials natively to retrieve data directly from DynamoDB handles simple extraction natively and effortlessly without pipeline dependencies.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q53",
@@ -42,7 +44,8 @@ export const questions51to65 = [
     correctAnswerIndex: 1,
     explanation: "Kinesis Data Streams effectively manages massive traffic spikes while guaranteeing shard ordering. Linking execution serverlessly behind AWS Lambda into the scale constraints of DynamoDB maintains low administrative overheads natively.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q54",
@@ -57,7 +60,8 @@ export const questions51to65 = [
     correctAnswerIndex: 1,
     explanation: "If you configure an Amazon Kinesis Data Stream as the explicit data source pointing INTO a Firehose stream, Firehose will implicitly disable the ability to natively accept any arbitrary external Direct PUT instructions (including agents).",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q55",
@@ -72,7 +76,8 @@ export const questions51to65 = [
     correctAnswerIndex: 0,
     explanation: "Parsing CloudTrail logs explicitly through native CloudWatch Metric Filters allows highly efficient, immediate anomaly metric calculations which tie perfectly back to direct real-time SNS notifications.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q56",
@@ -89,7 +94,8 @@ export const questions51to65 = [
     correctAnswerIndices: [2, 4],
     explanation: "You must prefix filter just the `/images` folder to transition to Standard IA after 45 days (protecting against AZ failure, avoiding One Zone IA). Then eventually dropping the full bucket contents exclusively to Glacier Deep Archive manages ultimate archival.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q57",
@@ -104,7 +110,8 @@ export const questions51to65 = [
     correctAnswerIndex: 0,
     explanation: "AWS Glue DataBrew provides native zero-code aggregations seamlessly handling un-optimized proprietary flat file formats like complex Microsoft `.xls` spreadsheets effortlessly.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q58",
@@ -121,7 +128,8 @@ export const questions51to65 = [
     correctAnswerIndices: [1, 2, 4],
     explanation: "GSIs manage massive read flexibility but link physically separated provisioning limits; overloading index writes blocks primary table modifications explicitly natively. Five LSIs are the maximum limit (not twenty).",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q59",
@@ -136,7 +144,8 @@ export const questions51to65 = [
     correctAnswerIndex: 3,
     explanation: "Because Network ACLs evaluate both directions as stateless architectures you explicit require paired reciprocal egress return firewall assignments to cleanly establish standard HTTP/TCP handshakes.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q60",
@@ -151,7 +160,8 @@ export const questions51to65 = [
     correctAnswerIndex: 2,
     explanation: "Amazon S3 does not natively support strict delivery to SQS FIFO target integrations. Standard loosely coupled default Standard SQS queues act as the dedicated supported connection layer target.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q61",
@@ -166,7 +176,8 @@ export const questions51to65 = [
     correctAnswerIndex: 1,
     explanation: "DynamoDB natively embeds zero-administration Time to Live (TTL) record expiration tracking eliminating custom job maintenance and drastically capping table capacity storage costs effortlessly automatically.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q62",
@@ -181,7 +192,8 @@ export const questions51to65 = [
     correctAnswerIndex: 0,
     explanation: "When file formats exceed approximately an 80% similarity heuristic baseline AWS Glue unifies them. The 8/10 files merge while 7/3 split into multiple tables mapping schema relationships accordingly.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q63",
@@ -196,7 +208,8 @@ export const questions51to65 = [
     correctAnswerIndex: 1,
     explanation: "Aggregating simple payloads logically consolidates operations decreasing physical Kinesis direct Put request calls drastically. This bypasses hard throughput caps cleanly saving money over raw auto scaling solutions.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q64",
@@ -211,7 +224,8 @@ export const questions51to65 = [
     correctAnswerIndex: 2,
     explanation: "VPC Gateway Endpoints function by establishing private subnet physical IP routing assignments; ensuring standard subnets reflect those endpoint boundaries specifically validates target traffic delivery routes natively.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q65",
@@ -226,6 +240,7 @@ export const questions51to65 = [
     correctAnswerIndex: 2,
     explanation: "Amazon Redshift Query Editor V2 supports native in-built scheduling functions allowing scheduled SQL execution (like explicit materialized view refreshes) without configuring complicated secondary Lambda triggering logic.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   }
 ];

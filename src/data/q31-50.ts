@@ -12,7 +12,8 @@ export const questions31to50 = [
     correctAnswerIndex: 3,
     explanation: "Kinesis Data Streams is built for real-time analytics of streaming data, and SNS natively supports push notifications directly to mobile devices running Apple, Google, and Fire OS architectures.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q32",
@@ -27,7 +28,8 @@ export const questions31to50 = [
     correctAnswerIndex: 1,
     explanation: "A Local Secondary Index (LSI) allows querying by an alternate sort key but MUST be defined precisely when the table is originally created, unlike Global Secondary Indexes (GSIs).",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q33",
@@ -42,7 +44,8 @@ export const questions31to50 = [
     correctAnswerIndex: 0,
     explanation: "This combination uses fully serverless services optimized for object processing (S3 Events + Lambda + Glue). Processed output seamlessly drives ad hoc (Athena) and dashboard (QuickSight) workflows at low overhead.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q34",
@@ -57,7 +60,8 @@ export const questions31to50 = [
     correctAnswerIndex: 2,
     explanation: "DynamoDB + DAX fits the constraints of serverless resilient NoSQL storage for IoT records paired with in-memory caching to guarantee rapid microsecond reads with very low operational maintenance.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q35",
@@ -74,7 +78,8 @@ export const questions31to50 = [
     correctAnswerIndices: [2, 3],
     explanation: "A recovered instance retains its exact identical metadata properties, including Elastic and public IP assignments. In-memory data is lost because the underlying virtualization hosts undergo a reboot-like event.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q36",
@@ -106,7 +111,8 @@ export const questions31to50 = [
     correctAnswerIndex: 2,
     explanation: "AWS Glue connects S3 and Redshift easily, allowing for advanced extraction, transformation, filtering, and joining before placing the incremental data reliably in the data warehouse.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q38",
@@ -122,7 +128,8 @@ export const questions31to50 = [
     correctAnswerIndices: [0, 2],
     explanation: "Both DynamoDB (with DAX or single-digit MS latency features) and Amazon ElastiCache (Redis) support millions of active concurrent users with high scale and extreme low latency operations suitable for global leaderboards.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q39",
@@ -137,7 +144,8 @@ export const questions31to50 = [
     correctAnswerIndex: 3,
     explanation: "Creating a SQL view to simplify joins and letting AWS Glue automatically crawl the schema and orchestrate a governed, serverless ETL script is structurally the most efficient architecture.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q40",
@@ -152,7 +160,8 @@ export const questions31to50 = [
     correctAnswerIndex: 2,
     explanation: "Amazon EFS integrates natively with Linux instances offering auto-tiering capability to EFS Infrequent Access for older files, significantly reducing storage costs dynamically.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q41",
@@ -167,7 +176,8 @@ export const questions31to50 = [
     correctAnswerIndex: 2,
     explanation: "AWS DMS sets up highly available continuous homogeneous/heterogeneous replications with minimal operational development code overhead.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q42",
@@ -182,7 +192,8 @@ export const questions31to50 = [
     correctAnswerIndex: 0,
     explanation: "Because memory is the bottleneck due to heavy query processing while HDFS storage stays low, scaling Instance Groups up leveraging the YARNMemoryAvailablePercentage auto-scaling capabilities balances the cluster execution needs.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q43",
@@ -197,7 +208,8 @@ export const questions31to50 = [
     correctAnswerIndex: 0,
     explanation: "EMR primarily utilizes HDFS natively inside the EC2 nodes; while it integrates with S3 via EMRFS, S3 cannot outright REPLACE HDFS entirely as the cluster's core foundational storage component.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q44",
@@ -214,7 +226,8 @@ export const questions31to50 = [
     correctAnswerIndices: [0, 1, 3],
     explanation: "Converting textual data to a highly compressed columnar format like Parquet combined with explicit `date=val/` format S3 partitions, managed via explicit partition statements ensures high performance queries with minimal Athena scanning costs.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q45",
@@ -229,7 +242,8 @@ export const questions31to50 = [
     correctAnswerIndex: 0,
     explanation: "Secrets Manager is natively designed specifically to handle sensitive keys/passwords, seamlessly handling automated key rotation with native integration supporting RDS database engines like PostgreSQL.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q46",
@@ -244,7 +258,8 @@ export const questions31to50 = [
     correctAnswerIndex: 2,
     explanation: "Athena workgroups naturally isolate execution history, metric tracking, and scan data usage limits across different teams inside the same AWS account by leveraging resource tagging constraints inside IAM.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q47",
@@ -259,7 +274,8 @@ export const questions31to50 = [
     correctAnswerIndex: 0,
     explanation: "By piping events through an Amazon SQS queue and allowing instances to poll from it, exactly ONE instance will process any given incoming message, establishing high decoupling and guaranteed execution without replication conflicts.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q48",
@@ -274,7 +290,8 @@ export const questions31to50 = [
     correctAnswerIndex: 3,
     explanation: "AWS Glue DataBrew provides a powerful visual data preparation platform that easily manages 250+ transforms automatically, handling non-traditional data sources like specific raw Microsoft Excel files.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q49",
@@ -289,7 +306,8 @@ export const questions31to50 = [
     correctAnswerIndex: 2,
     explanation: "Amazon S3 Analytics evaluates storage access patterns to intelligently and exclusively provide optimization transitions from Amazon S3 Standard down to specifically Amazon S3 Standard-IA.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   },
   {
     id: "q50",
@@ -304,6 +322,7 @@ export const questions31to50 = [
     correctAnswerIndex: 1,
     explanation: "Running an AWS Glue job to transform naive uncompressed flat files to columnar binary structure (Parquet) and establishing strict S3 partitions drastically reduces querying overhead and boosts Athena scale performance.",
     whyIncorrect: "For this practice question, detailed reasoning for incorrect options and official AWS documentation links are being added to our syllabus database and will be available shortly.",
-    docLink: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation"
+    decisionHack: "Apply the right AWS capability for the use case.",
+    docLink: "https://docs.aws.amazon.com/"
   }
 ];
